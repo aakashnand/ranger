@@ -46,7 +46,9 @@
                     <include>javax.inject:javax.inject:jar:${javax-inject.version}</include>
                     <include>org.apache.bval:bval-jsr:jar:${trino.bval-jsr.version}</include>
                     <include>org.slf4j:slf4j-api:jar:${slf4j-api.version}</include>
+                    <include>log4j:log4j:jar:${log4j.version}</include>
                     <include>javax.annotation:javax.annotation-api:jar:${javax.annotation-api}</include>
+                    <include>com.fasterxml.jackson.core:jackson-core:jar:${fasterxml.jackson.version}</include>
                 </includes>
             </binaries>
         </moduleSet>

@@ -37,6 +37,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import javax.security.auth.kerberos.KerberosPrincipal;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -55,7 +56,7 @@ public class RangerSystemAccessControlTest {
   //private static final Identity nonAsciiUser = Identity.ofUser("\u0194\u0194\u0194");
 
   private static final Set<String> allCatalogs = ImmutableSet.of("open-to-all", "all-allowed", "alice-catalog");
-  private static final Set<String> queryOwners = ImmutableSet.of("bob", "alice", "frank");
+  private static final Collection<Identity> queryOwners = ImmutableSet.of(Identity.ofUser("bob"),Identity.ofUser("alice"),Identity.ofUser("frank"));
   private static final String aliceCatalog = "alice-catalog";
   private static final CatalogSchemaName aliceSchema = new CatalogSchemaName("alice-catalog", "schema");
   private static final CatalogSchemaTableName aliceTable = new CatalogSchemaTableName("alice-catalog", "schema","table");
