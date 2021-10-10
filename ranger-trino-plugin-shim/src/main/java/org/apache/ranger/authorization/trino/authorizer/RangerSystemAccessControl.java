@@ -399,7 +399,7 @@ public class RangerSystemAccessControl
     }
   }
 
-  @Override
+@Override
   public Set<String> filterColumns(SystemSecurityContext context, CatalogSchemaTableName table, Set<String> columns) {
     Set<String> filteredColumns;
     try {
@@ -546,4 +546,6 @@ public class RangerSystemAccessControl
       rangerPluginClassLoader.deactivate();
     }
   }
+
 }
+
