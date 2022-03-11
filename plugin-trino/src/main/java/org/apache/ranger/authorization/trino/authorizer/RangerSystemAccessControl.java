@@ -476,6 +476,15 @@ public class RangerSystemAccessControl
   }
 
   @Override
+  public void checkCanTruncateTable(SystemSecurityContext context, CatalogSchemaTableName table)
+  {
+    if (!hasPermission(createResource(table), context, TrinoAccessType.DELETE)) {
+      LOG.debug("RangerSystemAccessControl.checkCanTruncateTable(" + table.getSchemaTableName().getTableName() + ") denied");
+      AccessDeniedException.denyTruncateTable(table.getSchemaTableName().getTableName());
+    }
+  }
+
+  @Override
   public void checkCanGrantTablePrivilege(SystemSecurityContext context, Privilege privilege, CatalogSchemaTableName table, TrinoPrincipal grantee, boolean withGrantOption) {
     if (!hasPermission(createResource(table), context, TrinoAccessType.GRANT)) {
       LOG.debug("RangerSystemAccessControl.checkCanGrantTablePrivilege(" + table + ") denied");

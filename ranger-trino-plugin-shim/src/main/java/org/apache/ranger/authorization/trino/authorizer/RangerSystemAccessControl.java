@@ -292,6 +292,17 @@ public class RangerSystemAccessControl
   }
 
   @Override
+  public void checkCanTruncateTable(SystemSecurityContext context, CatalogSchemaTableName table)
+  {
+    try {
+      activatePluginClassLoader();
+      systemAccessControlImpl.checkCanTruncateTable(context, table);
+    } finally {
+      deactivatePluginClassLoader();
+    }
+  }
+
+  @Override
   public void checkCanCreateView(SystemSecurityContext context, CatalogSchemaTableName view) {
     try {
       activatePluginClassLoader();
