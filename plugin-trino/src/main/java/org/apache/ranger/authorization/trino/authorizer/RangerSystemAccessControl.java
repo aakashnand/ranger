@@ -676,9 +676,19 @@ public class RangerSystemAccessControl
     }
   }
 
+  /**
+   * This is evaluated on table column level
+   */
   @Override
   public void checkCanUpdateTableColumns(SystemSecurityContext securityContext, CatalogSchemaTableName table, Set<String> updatedColumnNames) {
-    SystemAccessControl.super.checkCanUpdateTableColumns(securityContext, table, updatedColumnNames);
+    // SystemAccessControl.super.checkCanUpdateTableColumns(securityContext, table, updatedColumnNames); // ALWAYS DENY
+    try {
+      // USE INSERT AND DELETE PERMISSIONS INSTEAD
+      checkCanInsertIntoTable(securityContext, table);
+      checkCanDeleteFromTable(securityContext, table);
+    } catch (AccessDeniedException ade) {
+      AccessDeniedException.denyUpdateTableColumns(table.toString(), updatedColumnNames);
+    }
   }
 
   /** FUNCTIONS **/
